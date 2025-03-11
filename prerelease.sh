@@ -3,17 +3,17 @@
 # Input Variables
 GITHUB_TOKEN="$1"
 COMMIT_MESSAGE_KEYWORD="$2"
-TRUNK_BRANCH="$3"
+HEAD_COMMIT_MESSAGE="$3"
+TRUNK_BRANCH="$4"
 
 # Preconditions and initial checks
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-HEAD_COMMIT_MESSAGE=$(git log -2 --no-merges --pretty=%B)
 
 echo "Branch: $BRANCH"
 echo "Head Commit Message: $HEAD_COMMIT_MESSAGE"
 
 # Exit if the commit message doesn't meet the specific keyword
-if [[ "$HEAD_COMMIT_MESSAGE" != "[$COMMIT_MESSAGE_KEYWORD]"* ]]; then
+if [[ "$HEAD_COMMIT_MESSAGE" != "$COMMIT_MESSAGE_KEYWORD"* ]]; then
   echo "No commit with the keyword found. Exiting."
   exit 0
 fi
