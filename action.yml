@@ -20,6 +20,5 @@ runs:
   using: "composite"
   steps:
     - name: "Run Pre-Release Script"
-      shell: "bash"
-      run: |
-        bash ./prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+      uses: "ubuntu-latest"
+      run: bash prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
