@@ -1,7 +1,7 @@
 name: "Create Prerelease"
 description: "A reusable GitHub Action to create a pre-release version."
 
-author: "[Your Name]"
+author: "Sandy Thomson"
 
 inputs:
   github_token:
@@ -19,10 +19,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: "List files for diagnostics"
-      shell: "bash"
-      run: ls -R
+    - name: Checkout Action
+      uses: actions/checkout@v4
+      with:
+        repository: scoffable/pr-publish-prerelease-action
+        path: ./action-repo
 
     - name: "Run Pre-Release Script"
       shell: "bash"
-      run: ./prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+      run: bash ./action-repo/prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
