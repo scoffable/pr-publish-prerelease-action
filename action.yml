@@ -19,6 +19,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: "List files for diagnostics"
+      shell: "bash"
+      run: ls -R
+
     - name: "Run Pre-Release Script"
       shell: "bash"
-      run: prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+      run: ./prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
