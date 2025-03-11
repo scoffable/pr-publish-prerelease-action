@@ -7,7 +7,7 @@ TRUNK_BRANCH="$3"
 
 # Preconditions and initial checks
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-HEAD_COMMIT_MESSAGE=$(git log -1 --pretty=%B HEAD)
+HEAD_COMMIT_MESSAGE=$(git log -1 --no-merges --pretty=%B)
 
 echo "Branch: $BRANCH"
 echo "Head Commit Message: $HEAD_COMMIT_MESSAGE"
