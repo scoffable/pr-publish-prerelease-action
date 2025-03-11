@@ -8,7 +8,7 @@ inputs:
     description: "GitHub Token for authentication."
     required: true
   commit_message:
-    description: 'The commit message, typically supplied by: ${{ github.event.head_commit.message }}'
+    description: 'The commit message, typically supplied by (remove "\"): $\{{ github.event.head_commit.message }}'
     required: true
   commit_message_keyword:
     description: "Commit prefix to trigger prerelease creation (put in [] brackets)."
