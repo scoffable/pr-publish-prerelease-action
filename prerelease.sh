@@ -9,6 +9,9 @@ TRUNK_BRANCH="$3"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 HEAD_COMMIT_MESSAGE=$(git log -1 --pretty=%B HEAD)
 
+echo "Branch: $BRANCH"
+echo "Head Commit Message: $HEAD_COMMIT_MESSAGE"
+
 # Exit if the commit message doesn't meet the specific keyword
 if [[ "$HEAD_COMMIT_MESSAGE" != "[$COMMIT_MESSAGE_KEYWORD]"* ]]; then
   echo "No commit with the keyword found. Exiting."
