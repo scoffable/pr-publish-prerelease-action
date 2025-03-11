@@ -19,18 +19,16 @@ if [[ "$HEAD_COMMIT_MESSAGE" != "$COMMIT_MESSAGE_KEYWORD"* ]]; then
 fi
 
 # Sanitize Branch Name
-echo "Sanitizing branch name...:"
 SANITIZED_BRANCH=$(echo "$BRANCH" | tr '/' '-')
-echo -n "$SANITIZED_BRANCH"
+echo "Sanitizing branch name: $SANITIZED_BRANCH"
 
 # Determine the Main Version
-MAIN_VERSION=$(git tag --sort=-creatordate --merged $(git merge-base HEAD "$TRUNK_BRANCH") --list "*" | grep -v "-" | head -n 1)
+MAIN_VERSION=$(git describe --tags --abbrev=0 $(git merge-base $TRUNK_BRANCH HEAD))
 echo "Common trunk version: $MAIN_VERSION"
 
 # Determine the next sequence number for `A`
 LATEST_TAG=$(git describe --tags --match "$MAIN_VERSION-$SANITIZED_BRANCH.*" --abbrev=0 2>/dev/null)
-echo "Latest branch tag: LATEST_TAG"
-
+echo "Latest branch tag: $LATEST_TAG"
 
 if [[ $LATEST_TAG ]]; then
   LAST_A=${LATEST_TAG##*.}
