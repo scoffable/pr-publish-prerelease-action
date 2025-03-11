@@ -1,0 +1,25 @@
+name: "Create Prerelease"
+description: "A reusable GitHub Action to create a pre-release version."
+
+author: "[Your Name]"
+
+inputs:
+  github_token:
+    description: "GitHub Token for authentication."
+    required: true
+  commit_message_keyword:
+    description: "Keyword to trigger prerelease creation."
+    required: false
+    default: "[prerelease]"
+  trunk_branch:
+    description: "Name of the trunk branch (e.g., main or master)."
+    required: false
+    default: "master"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Run Pre-Release Script"
+      shell: "bash"
+      run: |
+        bash prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
