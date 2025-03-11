@@ -22,4 +22,4 @@ runs:
     - name: "Run Pre-Release Script"
       shell: "bash"
       run: |
-        bash prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+        bash ./prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
