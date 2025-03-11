@@ -23,7 +23,7 @@ SANITIZED_BRANCH=$(echo "$BRANCH" | tr '/' '-')
 echo "Sanitizing branch name: $SANITIZED_BRANCH"
 
 # Determine the Main Version
-MAIN_VERSION=$(git describe --tags --abbrev=0 $(git merge-base $TRUNK_BRANCH HEAD))
+MAIN_VERSION=$(git describe --tags --abbrev=0 $(git merge-base origin/$TRUNK_BRANCH HEAD))
 echo "Common trunk version: $MAIN_VERSION"
 
 # Determine the next sequence number for `A`
