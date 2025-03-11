@@ -10,7 +10,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 HEAD_COMMIT_MESSAGE=$(git log -1 --pretty=%B HEAD)
 
 # Exit if the commit message doesn't meet the specific keyword
-if [[ "$HEAD_COMMIT_MESSAGE" != *"$COMMIT_MESSAGE_KEYWORD"* ]]; then
+if [[ "$HEAD_COMMIT_MESSAGE" != "[$COMMIT_MESSAGE_KEYWORD]"* ]]; then
   echo "No commit with the keyword found. Exiting."
   exit 0
 fi
