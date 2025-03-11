@@ -19,10 +19,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: "Set execute permission for prerelease script"
-      shell: "bash"
-      run: chmod +x prerelease-script.sh
-
     - name: "Run Pre-Release Script"
       shell: "bash"
-      run: bash prerelease-script.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+      run: prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
