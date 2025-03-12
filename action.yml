@@ -47,3 +47,5 @@ runs:
         GH_TOKEN: ${{ inputs.release_pat }}
       with:
         title: ${{ steps.pre_release_script.outputs.pre_release_version }}"
+        tag: ${{ steps.pre_release_script.outputs.pre_release_version }}"
+        prerelease: true
