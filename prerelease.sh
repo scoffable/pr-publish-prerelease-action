@@ -61,5 +61,4 @@ fi
 echo "Authenticating with GitHub CLI using GITHUB_TOKEN..."
 echo "$GITHUB_TOKEN" | gh auth login --with-token
 
-echo "Creating prerelease with version: $PRE_RELEASE_VERSION"
-gh release create "$PRE_RELEASE_VERSION" --prerelease --notes "Automated prerelease: $PRE_RELEASE_VERSION" --target "$FEATURE_BRANCH"
+echo "::set-output name=pre_release_version::$PRE_RELEASE_VERSION"

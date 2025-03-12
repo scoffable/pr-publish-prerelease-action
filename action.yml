@@ -29,5 +29,11 @@ runs:
         path: ./action-repo
 
     - name: "Run Pre-Release Script"
+      id: pre_release_script
       shell: "bash"
       run: bash ./action-repo/prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.feature_branch }}" "${{ inputs.trunk_branch }}"
+
+    - name: Use the Output from Script
+      shell: "bash"
+      run: |
+        echo "The output of the script is ${{ steps.pre_release_script.outputs.pre_release_version }}"
