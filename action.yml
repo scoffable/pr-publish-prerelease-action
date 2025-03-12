@@ -5,7 +5,10 @@ author: "Sandy Thomson"
 
 inputs:
   github_token:
-    description: "GitHub Token for authentication."
+    description: "Normal gitHub Token for authentication"
+    required: true
+  release_pat:
+    description: "Personal access token for creating a release, so github actions run"
     required: true
   feature_branch:
     description: "PR branch name"
@@ -41,6 +44,6 @@ runs:
     - name: Create a Release
       uses: elgohr/Github-Release-Action@v5
       env:
-        GH_TOKEN: ${{ inputs.github_token }}
+        GH_TOKEN: ${{ inputs.release_pat }}
       with:
         title: ${{ steps.pre_release_script.outputs.pre_release_version }}"
