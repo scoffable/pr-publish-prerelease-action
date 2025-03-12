@@ -44,12 +44,16 @@ PRE_RELEASE_VERSION="$MAIN_VERSION-$SANITIZED_BRANCH.$NEXT_A"
 if [ -f "pom.xml" ]; then
   echo "Updating pom.xml with prerelease version: $PRE_RELEASE_VERSION"
   sed -i "s|<version>.*</version>|<version>$PRE_RELEASE_VERSION</version>|" pom.xml
-  git add pom.xml
-  git commit -m "Update pom.xml to $PRE_RELEASE_VERSION"
 
+  echo "Setting git config"
   git config user.name "github-actions"
   git config user.email "github-actions@github.com"
 
+  echo "Adding pom.xml to git"
+  git add pom.xml
+  echo "Committing changes"
+  git commit -m "Update pom.xml to $PRE_RELEASE_VERSION"
+  echo "Pushing changes to $FEATURE_BRANCH"
   git push origin HEAD:"$FEATURE_BRANCH"
 fi
 
