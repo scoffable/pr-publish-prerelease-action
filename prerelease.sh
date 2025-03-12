@@ -19,7 +19,7 @@ if [[ "$HEAD_COMMIT_MESSAGE" != "$COMMIT_MESSAGE_KEYWORD"* ]]; then
 fi
 
 # Sanitize Branch Name
-SANITIZED_BRANCH=$(echo "$FEATURE_BRANCH" tr -cd '[:alnum:]\n' | tr '[:upper:]' '[:lower:]')
+SANITIZED_BRANCH=$(echo "$FEATURE_BRANCH" | tr -cd '[:alnum:]\n' | tr '[:upper:]' '[:lower:]')
 
 echo "Sanitizing branch name: $SANITIZED_BRANCH"
 
