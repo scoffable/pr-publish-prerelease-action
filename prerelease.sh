@@ -57,8 +57,4 @@ if [ -f "pom.xml" ]; then
   git push origin HEAD:"$FEATURE_BRANCH"
 fi
 
-# Authenticate and create the prerelease using GitHub CLI
-echo "Authenticating with GitHub CLI using GITHUB_TOKEN..."
-echo "$GITHUB_TOKEN" | gh auth login --with-token
-
 echo "pre_release_version=$PRE_RELEASE_VERSION" >> $GITHUB_OUTPUT

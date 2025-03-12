@@ -19,6 +19,11 @@ inputs:
     required: false
     default: "master"
 
+outputs:
+  pre-release-version:
+    description: "Created pre-release-version"
+    value: ${{ steps.pre_release_script.outputs.pre_release_version }}"
+
 runs:
   using: "composite"
   steps:
@@ -33,7 +38,9 @@ runs:
       shell: "bash"
       run: bash ./action-repo/prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.feature_branch }}" "${{ inputs.trunk_branch }}"
 
-    - name: Use the Output from Script
-      shell: "bash"
-      run: |
-        echo "The output of the script is ${{ steps.pre_release_script.outputs.pre_release_version }}"
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v5
+      env:
+        GH_TOKEN: ${{ inputs.github_token }}
+      with:
+        title: ${{ steps.pre_release_script.outputs.pre_release_version }}"
