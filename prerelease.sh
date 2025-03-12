@@ -3,13 +3,13 @@
 # Input Variables
 GITHUB_TOKEN="$1"
 COMMIT_MESSAGE_KEYWORD="$2"
-TRUNK_BRANCH="$3"
+FEATURE_BRANCH="$3"
+TRUNK_BRANCH="$4"
 
 # Preconditions and initial checks
-BRANCH=$(git branch --remote --contains HEAD | sed -n 's|.*/||p')
 HEAD_COMMIT_MESSAGE=$(git log -1 --no-merges --pretty=%B)
 
-echo "Branch: $BRANCH"
+echo "Branch: $FEATURE_BRANCH"
 echo "Head Commit Message: $HEAD_COMMIT_MESSAGE"
 
 # Exit if the commit message doesn't meet the specific keyword
@@ -19,7 +19,7 @@ if [[ "$HEAD_COMMIT_MESSAGE" != "$COMMIT_MESSAGE_KEYWORD"* ]]; then
 fi
 
 # Sanitize Branch Name
-SANITIZED_BRANCH=$(echo "$BRANCH" | tr '/' '-')
+SANITIZED_BRANCH=$(echo "$FEATURE_BRANCH" | tr '/' '-')
 echo "Sanitizing branch name: $SANITIZED_BRANCH"
 
 # Determine the Main Version

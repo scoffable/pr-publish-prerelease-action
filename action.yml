@@ -7,6 +7,9 @@ inputs:
   github_token:
     description: "GitHub Token for authentication."
     required: true
+  feature_branch:
+    description: "PR branch name"
+    required: true
   commit_message_keyword:
     description: "Commit prefix to trigger prerelease creation (put in [] brackets)."
     required: false
@@ -27,4 +30,4 @@ runs:
 
     - name: "Run Pre-Release Script"
       shell: "bash"
-      run: bash ./action-repo/prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.trunk_branch }}"
+      run: bash ./action-repo/prerelease.sh "${{ inputs.github_token }}" "${{ inputs.commit_message_keyword }}" "${{ inputs.feature_branch }}" "${{ inputs.trunk_branch }}"
