@@ -46,6 +46,11 @@ if [ -f "pom.xml" ]; then
   sed -i "s|<version>.*</version>|<version>$PRE_RELEASE_VERSION</version>|" pom.xml
   git add pom.xml
   git commit -m "Update pom.xml to $PRE_RELEASE_VERSION"
+
+  git config user.name "github-actions"
+  git config user.email "github-actions@github.com"
+
+  git push origin HEAD:"$FEATURE_BRANCH"
 fi
 
 # Authenticate and create the prerelease using GitHub CLI
