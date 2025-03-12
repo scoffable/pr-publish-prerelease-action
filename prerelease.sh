@@ -43,7 +43,7 @@ PRE_RELEASE_VERSION="$MAIN_VERSION-$SANITIZED_BRANCH.$NEXT_A"
 # Update and commit `pom.xml`
 if [ -f "pom.xml" ]; then
   echo "Updating pom.xml with prerelease version: $PRE_RELEASE_VERSION"
-  sed -i "s|<version>.*</version>|<version>$PRE_RELEASE_VERSION</version>|" pom.xml
+  mvn versions:set -DnewVersion="$PRE_RELEASE_VERSION" -DgenerateBackupPoms=false
 
   echo "Setting git config"
   git config user.name "github-actions"
