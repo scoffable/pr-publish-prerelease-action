@@ -6,7 +6,7 @@ COMMIT_MESSAGE_KEYWORD="$2"
 TRUNK_BRANCH="$3"
 
 # Preconditions and initial checks
-BRANCH=$(git symbolic-ref --short refs/remotes/origin/HEAD)
+BRANCH=$(git branch --remote --contains HEAD | sed -n 's|.*/||p')
 HEAD_COMMIT_MESSAGE=$(git log -1 --no-merges --pretty=%B)
 
 echo "Branch: $BRANCH"
