@@ -19,7 +19,17 @@ if [[ "$HEAD_COMMIT_MESSAGE" != "$COMMIT_MESSAGE_KEYWORD"* ]]; then
 fi
 
 # Sanitize Branch Name
-SANITIZED_BRANCH=$(echo "$FEATURE_BRANCH" | tr '/' '-')
+SANITIZED_BRANCH=$(echo "$FEATURE_BRANCH" | tr -cd '[:alnum:] \n' | sed -E 's/[_-]+/ /g' | awk '{
+    for (i=1; i<=NF; i++) {
+        if (i == 1) {
+            printf "%s", tolower($i);
+        } else {
+            printf "%s", toupper(substr($i,1,1)) substr($i,2);
+        }
+    }
+    print "";
+}')
+
 echo "Sanitizing branch name: $SANITIZED_BRANCH"
 
 # Determine the Main Version
