@@ -52,7 +52,7 @@ if [ -f "pom.xml" ]; then
   # Don't generate backup pom files
   #
   # These things are done to speed this up, and don't generate extra files
-  mvn -N -o
+  mvn -N -o \
   -Dplugin.artifacts-metadata-check=false \
   -Dplugin.tools-metadata-check=false \
   -DgenerateBackupPoms=false \
