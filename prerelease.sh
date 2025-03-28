@@ -45,6 +45,8 @@ if [ -f "pom.xml" ]; then
   echo "Updating pom.xml with prerelease version: $PRE_RELEASE_VERSION"
   # This downloads the versions plugin which is necessary to set the version using maven
   mvn help:describe -Dplugin=org.codehaus.mojo:versions-maven-plugin
+  # Dependenc(y|ies) for the above plugin
+  mvn dependency:get -Dartifact=org.codehaus.plexus:plexus-interpolation:1.27
 
   # -N = non-recursive (don't scan submodules)
   # -o = offline mode (don't download anything
