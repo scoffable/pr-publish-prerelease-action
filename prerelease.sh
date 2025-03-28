@@ -43,23 +43,9 @@ PRE_RELEASE_VERSION="$MAIN_VERSION-$SANITIZED_BRANCH.$NEXT_A"
 # Update and commit `pom.xml`
 if [ -f "pom.xml" ]; then
   echo "Updating pom.xml with prerelease version: $PRE_RELEASE_VERSION"
-  # This downloads the versions plugin which is necessary to set the version using maven
-  mvn help:describe -Dplugin=org.codehaus.mojo:versions-maven-plugin
-  # Dependenc(y|ies) for the above plugin
-  mvn dependency:get -Dartifact=org.codehaus.plexus:plexus-interpolation:1.27
-
-  # -N = non-recursive (don't scan submodules)
-  # -o = offline mode (don't download anything
-  # Disable a few plugins
-  # Don't generate backup pom files
-  #
-  # These things are done to speed this up, and don't generate extra files
-  mvn -N -o \
-  -Dplugin.artifacts-metadata-check=false \
-  -Dplugin.tools-metadata-check=false \
-  -DgenerateBackupPoms=false \
-  -DnewVersion="$PRE_RELEASE_VERSION" \
-  versions:set 
+  # mvn versions:set -DnewVersion="$PRE_RELEASE_VERSION" -DgenerateBackupPoms=false
+  # This is a lot faster than the above command
+  sed -i '0,/<version>[^<]*<\/version>/s//<version>'"$PRE_RELEASE_VERSION"'<\/version>/' pom.xml
 
   echo "Setting git config"
   git config user.name "github-actions"
