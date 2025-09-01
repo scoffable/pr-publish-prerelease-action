@@ -51,7 +51,7 @@ runs:
 #        prerelease: true
     - name: Create a Release
       if: ${{ steps.pre_release_script.outputs.pre_release_version != '' }}
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.19.0
       with:
         token: ${{ inputs.release_pat }}
         tag: ${{ steps.pre_release_script.outputs.pre_release_version }}
