@@ -57,3 +57,4 @@ runs:
         tag: ${{ steps.pre_release_script.outputs.pre_release_version }}
         commit: ${{ inputs.feature_branch }}
         prerelease: true
+        immutableCreate: false
